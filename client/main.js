@@ -41,7 +41,10 @@ class Main extends Component {
     }
 }
 Main.contextTypes={
-    store: React.PropTypes.object
+    store: PropTypes.object
+};
+Main.propTypes={
+    children: PropTypes.element
 };
 
 
@@ -51,6 +54,7 @@ Main.contextTypes={
 
 
 function user(state={}, action){
+    console.log("*************user *******",action.type);
     switch(action.type){
         case 'SET_USER':
             return action.user;
@@ -66,11 +70,14 @@ function user(state={}, action){
 
 
 const initialState = {
-    images:[{_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1}],
-    user:{}
+    images:[
+        {_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1},
+        {_id:2, title:'i dun care', imageURL:'https://s-media-cache-ak0.pinimg.com/236x/04/0b/aa/040baad9f12d5fa530a833055cb8647b.jpg', likesCount:9, userId:1}
+        ],
+    user:{_id:1, name:'test'}
 };
 const createStoreWithThunk = applyMiddleware(thunk)(createStore);
-const allReducers = combineReducers({images:imageReducer, user});
+const allReducers = combineReducers({"images":imageReducer, "user":user});
 const Store = createStoreWithThunk(allReducers, initialState);
 // dispatch to get initial data from server
 

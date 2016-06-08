@@ -1,6 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
+import * as actions from '../actions/imageActions';
 
-export default class ImageForm extends Component {
+class ImageForm extends Component {
     constructor(props) {
         super(props);
         
@@ -9,13 +11,20 @@ export default class ImageForm extends Component {
     
     handleSubmit(e){
         e.preventDefault();
-        console.log(this.refs)
+        var imageData = {
+            title: this.refs.title.value, 
+            imageURL: this.refs.imageurl.value, 
+            likesCount:0,
+            userId:this.props.user._id
+        };
+        console.log("submit",imageData);
+        this.props.addImage(imageData);
     }
     
     render(){
         return (
             <div>
-                <form onsubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label>Title</label>
                         <input type="text" ref="title" name="title" className="form-control"/>
@@ -30,3 +39,19 @@ export default class ImageForm extends Component {
         );
     }
 }
+ImageForm.propTypes ={
+    images: PropTypes.array,
+    user: PropTypes.object,
+    addImage: PropTypes.func
+};
+
+function mapStateToProps(state){
+    return {images:state.images, user:state.user};
+}
+function mapDispatchToProps(dispatch){
+    return {
+        addImage: (image)=>{dispatch(actions.AddImage(image))}
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImageForm);
