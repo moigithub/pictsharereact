@@ -9,10 +9,8 @@ import {createStore, combineReducers, applyMiddleware} from 'redux';
 // const Provider = require('react-redux').Provider
 import { Provider, connect } from 'react-redux';
 
-const objectAssign = require('object-assign');
-
 // import $ from 'jquery';
-var $ = require("jquery");
+//var $ = require("jquery");
 
 //require('es6-promise').polyfill();
 //import fetch from 'isomorphic-fetch'
@@ -20,10 +18,11 @@ var $ = require("jquery");
 
 require("./styles.css");
 
-
+import ImageForm from './component/ImageForm';
+import ImageList from './component/ImageList';
 
 ///////////
-class Main extends React.Component {
+class Main extends Component {
     constructor(props){
         super(props);
     }
@@ -32,7 +31,7 @@ class Main extends React.Component {
         return (
             
             <div >
-                <p>hello</p>
+                <ImageForm/>
                 {this.props.children}
             </div>
             );
@@ -70,7 +69,10 @@ function user(state={}, action){
 ///// STORE ///
 import thunk from 'redux-thunk';
 
-const initialState = {images:[],user:{}};
+const initialState = {
+    images:[{title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1}],
+    user:{}
+};
 const createStoreWithThunk = applyMiddleware(thunk)(createStore);
 const allReducers = combineReducers({images, user});
 const Store = createStoreWithThunk(allReducers, initialState);
@@ -108,8 +110,9 @@ ReactDOM.render((
 <Provider store={Store}>
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
-
-    
+        <IndexRoute  component={ImageList}/>
+        <Route path="/images" component={ImageList}/>
+        
     </Route>
   </Router>
 </Provider>  

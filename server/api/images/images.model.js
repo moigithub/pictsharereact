@@ -4,10 +4,10 @@ var mongoose = require('mongoose'),
 
 
 var ImagesSchema = new Schema({
-        userId    : String,
-        imageURL  : String,
-        title     : String,
-        likes     : Number
+        userId     : String,
+        imageURL   : String,
+        title      : String,
+        likesCount : Number
 });
 
 
