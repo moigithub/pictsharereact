@@ -19,6 +19,11 @@ class ImageForm extends Component {
         };
         console.log("submit",imageData);
         this.props.addImage(imageData);
+        
+        //clear input box
+        this.refs.title.value=""; 
+        this.refs.imageurl.value=""; 
+
     }
     
     render(){
@@ -50,7 +55,7 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
     return {
-        addImage: (image)=>{dispatch(actions.AddImage(image))}
+        addImage: (image)=>{dispatch(actions.AddImageAsync(image))}
     };
 }
 

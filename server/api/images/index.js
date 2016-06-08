@@ -24,6 +24,7 @@ router.get('/user/:id', function(req, res) {
 
 // create new images
 router.post('/', function(req, res) {
+    console.log("post image create",req.body);
     Images.create(req.body, function(err, images) {
         if(err) { return handleError(res, err); }
         return res.status(201).json(images);
