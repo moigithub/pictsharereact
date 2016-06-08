@@ -8,6 +8,9 @@ import { Router, Route, Link, browserHistory, IndexRoute, Redirect} from 'react-
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 // const Provider = require('react-redux').Provider
 import { Provider, connect } from 'react-redux';
+import thunk from 'redux-thunk';
+
+import imageReducer from './reducers/imageReducer';
 
 // import $ from 'jquery';
 //var $ = require("jquery");
@@ -45,14 +48,7 @@ Main.contextTypes={
 
 ///////////////
 //// REDUCER
-function images(state=[], action){
-    switch(action.type){
-        case 'ADD_IMAGE':
-            return [...state, action.image];
-            
-    }
-    return state;
-}
+
 
 function user(state={}, action){
     switch(action.type){
@@ -67,14 +63,14 @@ function user(state={}, action){
 //////ACTION CREATOR
 
 ///// STORE ///
-import thunk from 'redux-thunk';
+
 
 const initialState = {
-    images:[{title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1}],
+    images:[{_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1}],
     user:{}
 };
 const createStoreWithThunk = applyMiddleware(thunk)(createStore);
-const allReducers = combineReducers({images, user});
+const allReducers = combineReducers({images:imageReducer, user});
 const Store = createStoreWithThunk(allReducers, initialState);
 // dispatch to get initial data from server
 

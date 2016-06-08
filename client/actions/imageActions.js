@@ -3,14 +3,14 @@ import { ADD_IMAGE,
      LIKE_INC }
      from './actionConstants';
 
-export const addImage=(image)=>{
+export const AddImage=(image)=>{
     return {type: ADD_IMAGE, payload:image};
 };
 
-export function removeImage(image){
+export function RemoveImage(image){
     return {type: REMOVE_IMAGE, payload:image};
 };
 
-export const likeInc=(image)=>{
+export const LikeInc=(image)=>{
     return {type: LIKE_INC, payload:image};
 };
