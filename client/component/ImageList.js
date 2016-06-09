@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../actions/imageActions';
+import * as imageActions from '../actions/imageActions';
 
 class Image extends Component {
     constructor(props) {
@@ -77,9 +77,9 @@ function mapStateToProps(state, ownProps){
 }
 function mapDispatchToProps(dispatch){
     return {
-        removeImage: image=>dispatch(actions.RemoveImage(image)),
-        likesInc: image=>dispatch(actions.LikeInc(image)),
-        likesDec: image=>dispatch(actions.LikeDec(image))
+        removeImage: image=>dispatch(imageActions.RemoveImageAsync(image)),
+        likesInc: image=>dispatch(imageActions.LikeInc(image)),
+        likesDec: image=>dispatch(imageActions.LikeDec(image))
     };
 }
 
