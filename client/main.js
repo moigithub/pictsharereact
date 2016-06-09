@@ -48,7 +48,7 @@ class Main extends Component {
             <div >
                 <NavBar {...data}/>
                 <div className="container">
-                    <ImageForm/>
+                    {data.logged && <ImageForm/>}
                     {this.props.children}
                 </div>
             </div>
