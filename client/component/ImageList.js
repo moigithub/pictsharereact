@@ -58,7 +58,7 @@ class ImageList extends Component {
                             onDelete={()=>removeImage(img)} 
                             onLikeClick={()=>likesInc(img)}
                             onDisLikeClick={()=>likesDec(img)}
-                            showDeleteButton={!!user._id}
+                            showDeleteButton={!!user}
                             />)
                     
                 }
