@@ -32,15 +32,6 @@ import Main from './component/Main';
 ///////////
 
 
-
-
-///////////////
-//// REDUCER
-
-
-/////////////////
-//////ACTION CREATOR
-
 ///// STORE ///
 
 

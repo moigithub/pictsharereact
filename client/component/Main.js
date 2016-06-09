@@ -10,10 +10,11 @@ class Main extends Component {
     }
 
     render(){
-        const {store}=this.props;
+        const {user}=this.props;
+        console.log("Main render",this.props);
         let data = {
-            user: store.getState().user,
-            logged : !!store.getState().user._id
+            user: user,
+            logged : !!user._id
         };
         return (
             
@@ -29,7 +30,7 @@ class Main extends Component {
 }
 Main.propTypes={
     children: PropTypes.element,
-    store: PropTypes.object
+    user: PropTypes.object
 };
 
 function mapStateToProps(state, ownProps){

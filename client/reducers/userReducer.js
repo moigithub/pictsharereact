@@ -1,9 +1,11 @@
+import {SET_USER, CLEAR_USER} from './actionConstants';
+
 export default function user(state={}, action){
-    console.log("*************user *******",action.type);
+    console.log("*************user reducer *******",action.type);
     switch(action.type){
-        case 'SET_USER':
+        case SET_USER:
             return action.user;
-        case 'CLEAR_USER':
+        case CLEAR_USER:
             return {};
             
     }
