@@ -23,7 +23,7 @@ require("./styles.css");
 
 import ImageForm from './component/ImageForm';
 import ImageList from './component/ImageList';
-
+import NavBar from './component/NavBar';
 ///////////
 class Main extends Component {
     constructor(props){
@@ -31,9 +31,14 @@ class Main extends Component {
     }
 
     render(){
+        let data = {
+            logged: true,
+            user: {displayName: 'test'}
+        };
         return (
             
             <div >
+                <NavBar {...data}/>
                 <ImageForm/>
                 {this.props.children}
             </div>
