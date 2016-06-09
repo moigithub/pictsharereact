@@ -1,4 +1,4 @@
-import {SET_USER, CLEAR_USER} from './actionConstants';
+import {SET_USER, CLEAR_USER} from '../actions/actionConstants';
 
 export default function user(state={}, action){
     console.log("*************user reducer *******",action.type);
