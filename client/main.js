@@ -24,43 +24,13 @@ import {getImagesFromServer} from './actions/imageActions';
 require("./styles.css");
 
 
-import ImageForm from './component/ImageForm';
 import ImageList from './component/ImageList';
-import NavBar from './component/NavBar';
 import SuccessLogin from './component/SuccessLogin';
 import SuccessLogout from './component/SuccessLogout';
-
+import Main from './component/Main';
 
 ///////////
-class Main extends Component {
-    constructor(props){
-        super(props);
-    }
 
-    render(){
-        console.log("main user context store", this.context);
-        let data = {
-            user: this.context.store.getState().user,
-            logged : !!this.context.store.getState().user._id
-        };
-        return (
-            
-            <div >
-                <NavBar {...data}/>
-                <div className="container">
-                    {data.logged && <ImageForm/>}
-                    {this.props.children}
-                </div>
-            </div>
-            );
-    }
-}
-Main.contextTypes={
-    store: PropTypes.object
-};
-Main.propTypes={
-    children: PropTypes.element
-};
 
 
 

@@ -10,11 +10,12 @@ class SuccessLogout extends React.Component {
     }
     
     componentDidMount(){
+        
             // request user data
             this.props.logout(function(){
                 // redirect to /
                 
-                setTimeout( ()=>{browserHistory.push('/')} ,1500);
+                setTimeout( browserHistory.push('/') ,500);
             });
     }
     
@@ -41,7 +42,7 @@ function mapStateToProps(state, ownProps){
 }
 function mapDispatchToProps(dispatch){
     return {
-        logout: ()=>dispatch(userActions.ClearUserAsync())
+        logout: (cb)=>dispatch(userActions.ClearUserAsync(cb))
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SuccessLogout);

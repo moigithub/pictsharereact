@@ -10,10 +10,12 @@ class SuccessLogin extends React.Component {
     }
     
     componentDidMount(){
+        
             // request user data
             this.props.login(function(){
                 // redirect to /
-                setTimeout( ()=>{browserHistory.push('/')} ,1500);
+                
+                setTimeout( browserHistory.push('/') ,1000);
             });
     }
     
@@ -39,7 +41,7 @@ function mapStateToProps(state, ownProps){
 }
 function mapDispatchToProps(dispatch){
     return {
-        login: ()=>dispatch(userActions.SetUserAsync())
+        login: (cb)=>dispatch(userActions.SetUserAsync(cb))
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(SuccessLogin);

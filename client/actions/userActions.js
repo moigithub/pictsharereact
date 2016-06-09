@@ -27,10 +27,10 @@ export function SetUserAsync(cb) {
                 localStorage.token = data._id;
                 localStorage.userData = JSON.stringify(data);
                 
-                console.log("success",data);
+                console.log("SetUserAsync success",data);
                 dispatch(SetUser(data));
                 
-                if(cb) cb();
+                if(typeof(cb) == "function") cb();
             })
             .fail(function(err){
                 console.error("error",err);
@@ -53,7 +53,7 @@ export function ClearUserAsync(cb) {
                 
                 dispatch(ClearUser());
                 
-                if(cb) cb();
+                if(typeof(cb) == "function") cb();
             })
             .fail(function() {
                 console.error( "auth/logout error getting api/votes data" );
