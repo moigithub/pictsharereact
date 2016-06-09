@@ -28,6 +28,7 @@ export const LikeDec=(image)=>{
 ///////////////////////////////////////////////////////////////////////////////
 
 export function AddImageAsync(image) {
+    console.log("addimageasync",image);
     return function(dispatch){
         /// http request
         var API_URL ="/api/images";
@@ -35,9 +36,9 @@ export function AddImageAsync(image) {
         $.ajax({
             url:`${API_URL}`,
             method:"POST",
-            data: {image},
-            contentType: "application/json; charset=utf-8",
-            processData :false,
+            data: image,
+        //    contentType: "application/json; charset=utf-8",
+        //    processData :false,        // when true (by default) process data as form encoded
             dataType: 'json',  // response from server should be object
         //    headers: { "Authorization": user.tk },
         })

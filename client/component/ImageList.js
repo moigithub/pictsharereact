@@ -2,18 +2,47 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/imageActions';
 
-const Image = ({title, imageURL, likesCount, onDelete, onLikeClick, onDisLikeClick})=>(
-    <div className ="ImageBox">
-        <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>
-        <img src={imageURL} className="img-responsive" />
-        <div className="ImageTitle">{title}</div>
-        <div className="likeBtns">
-            <button className="LikeBtnUp btn btn-info" onClick={onLikeClick}>+1</button>
-            <span className="LikeCount">{likesCount}</span>
-            <button className="LikeBtnDown btn btn-info" onClick={onDisLikeClick}>-1</button>
-        </div>
-    </div>
-);
+class Image extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = { imageOk : true};
+        this.brokenImage=this.brokenImage.bind(this);
+    }
+    
+    brokenImage(){
+        this.setState({imageOk: false});
+    }
+    
+    render(){
+        const {title, imageURL, likesCount, onDelete, onLikeClick, onDisLikeClick} = this.props;
+        const NO_IMAGE_URL= 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png';
+        return(
+            <div className ="ImageBox">
+                <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>
+                {this.state.imageOk ?
+                    <img src={imageURL} className="img-responsive" onError={this.brokenImage} />
+                :
+                    <img src={NO_IMAGE_URL} className="img-responsive" />
+                }
+                <div className="ImageTitle">{title}</div>
+                <div className="likeBtns">
+                    <button className="LikeBtnUp btn btn-info" onClick={onLikeClick}>+1</button>
+                    <span className="LikeCount">{likesCount}</span>
+                    <button className="LikeBtnDown btn btn-info" onClick={onDisLikeClick}>-1</button>
+                </div>
+            </div>
+        );
+    }
+}
+Image.propTypes ={
+    title: PropTypes.string, 
+    imageURL: PropTypes.string, 
+    likesCount: PropTypes.func, 
+    onDelete: PropTypes.func, 
+    onLikeClick: PropTypes.func, 
+    onDisLikeClick: PropTypes.func
+};
 
 class ImageList extends Component {
     constructor(props) {
