@@ -1,10 +1,9 @@
 
-import thunk from 'redux-thunk';
-
 import { ADD_IMAGE,
      REMOVE_IMAGE,
      LIKE_INC,
-     LIKE_DEC }
+     LIKE_DEC
+     }
      from './actionConstants';
 
 export const AddImage=(image)=>{

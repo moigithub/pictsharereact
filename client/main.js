@@ -106,7 +106,7 @@ const stockStore = createStore(
 
 function requireAuth(nextState, replace) {
     //console.log(nextState.location);
-  if (!Store.getState().user.userId) {
+  if (!auth.isLoggedIn()) {
       /*
     replace({
       pathname: '/auth/twitter' // only work if auth/twiter if part of <Route> list
@@ -125,7 +125,7 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
         <IndexRoute  component={ImageList}/>
-        <Route path="Picts/Me" component={ImageList}/>
+        <Route path="Picts/Me" component={ImageList}  onEnter={requireAuth} />
         
         <Route path="successLogin" component={SuccessLogin} />
         <Route path="successLogout" component={SuccessLogout} />

@@ -37,6 +37,7 @@ export class SuccessLogout extends React.Component {
             // request user data
             auth.logout(function(){
                 // redirect to /
+                
                 setTimeout( ()=>{browserHistory.push('/')} ,1500);
             });
     }
