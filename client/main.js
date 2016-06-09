@@ -25,7 +25,8 @@ import auth from './auth';
 import ImageForm from './component/ImageForm';
 import ImageList from './component/ImageList';
 import NavBar from './component/NavBar';
-import {SuccessLogin, SuccessLogout} from './component/SuccessLoginout';
+import SuccessLogin from './component/SuccessLogin';
+import SuccessLogout from './component/SuccessLogout';
 
 
 ///////////

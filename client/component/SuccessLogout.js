@@ -3,7 +3,7 @@ import { Router, Route, Link, browserHistory, IndexRoute, Redirect} from 'react-
 import {connect} from 'react-redux';
 import * as userActions from '../actions/userActions';
 
-class SuccessLogin extends React.Component {
+class SuccessLogout extends React.Component {
     constructor(props){
         super(props);
         
@@ -11,8 +11,9 @@ class SuccessLogin extends React.Component {
     
     componentDidMount(){
             // request user data
-            this.props.login(function(){
+            this.props.logout(function(){
                 // redirect to /
+                
                 setTimeout( ()=>{browserHistory.push('/')} ,1500);
             });
     }
@@ -20,16 +21,17 @@ class SuccessLogin extends React.Component {
     render(){
         return (
             <div>
-                <h1>You are logged in!</h1>
+                <h1>Thanks for playing with us!</h1>
                 <p>...redirecting to homepage</p>
             </div>
             );
     }
     
 }
-SuccessLogin.propTypes ={
-    login: PropTypes.func
+SuccessLogout.propTypes ={
+    logout: PropTypes.func
 };
+
 
 
 function mapStateToProps(state, ownProps){
@@ -39,7 +41,7 @@ function mapStateToProps(state, ownProps){
 }
 function mapDispatchToProps(dispatch){
     return {
-        login: ()=>dispatch(userActions.SetUserAsync())
+        logout: ()=>dispatch(userActions.ClearUserAsync())
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SuccessLogin);
+export default connect(mapStateToProps, mapDispatchToProps)(SuccessLogout);
