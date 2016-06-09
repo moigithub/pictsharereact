@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 
 import imageReducer from './reducers/imageReducer';
 import userReducer from './reducers/userReducer';
+import {getImagesFromServer} from './actions/imageActions';
 
 // import $ from 'jquery';
 //var $ = require("jquery");
@@ -75,8 +76,8 @@ Main.propTypes={
 
 const initialState = {
     images:[
-        {_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1},
-        {_id:2, title:'i dun care', imageURL:'https://s-media-cache-ak0.pinimg.com/236x/04/0b/aa/040baad9f12d5fa530a833055cb8647b.jpg', likesCount:9, userId:1}
+ //       {_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1},
+ //       {_id:2, title:'i dun care', imageURL:'https://s-media-cache-ak0.pinimg.com/236x/04/0b/aa/040baad9f12d5fa530a833055cb8647b.jpg', likesCount:9, userId:1}
         ],
     user:{}
 };
@@ -84,7 +85,7 @@ const createStoreWithThunk = applyMiddleware(thunk)(createStore);
 const allReducers = combineReducers({"images":imageReducer, "user":userReducer});
 const Store = createStoreWithThunk(allReducers, initialState);
 // dispatch to get initial data from server
-
+Store.dispatch(getImagesFromServer());
 
 /*
 const stockStore = createStore(

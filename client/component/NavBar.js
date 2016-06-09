@@ -8,6 +8,7 @@ export default class NavBar extends Component {
 
     
     render(){
+        console.log("navbar props",this.props);
         const { logged, user } = this.props;
         console.log("navbar", this.props);
         return(
@@ -47,6 +48,6 @@ export default class NavBar extends Component {
     }
 }
 NavBar.propTypes ={
-    logged: PropTypes.boolean,
+    logged: PropTypes.bool,
     user: PropTypes.object
 };

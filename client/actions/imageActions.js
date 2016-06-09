@@ -25,6 +25,31 @@ export const LikeDec=(image)=>{
 ///////////////////////////////////////////////////////////////////////////////
 /// async actions
 ///////////////////////////////////////////////////////////////////////////////
+export function getImagesFromServer() {
+    console.log("getImagesFromServer");
+    return function(dispatch){
+        /// http request
+        var API_URL ="/api/images";
+
+        $.ajax({
+            url:`${API_URL}`,
+            method:"GET",
+            dataType: 'json',  // response from server should be object
+        //    headers: { "Authorization": user.tk },
+        })
+            .done(function(data){
+                console.log("success",data);
+                data.forEach(function(image){
+                    dispatch(AddImage(image));
+                });
+            })
+            .fail(function(err){
+                console.error("error",err);
+//                toastr.error('Error: '+err);
+            });
+    };
+
+}
 
 export function AddImageAsync(image) {
     console.log("addimageasync",image);
