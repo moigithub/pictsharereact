@@ -95,7 +95,7 @@ export function RemoveImageAsync(image) {
         })
             .done(function(data){
                 console.log("success",data);
-                dispatch(RemoveImage(data));
+                dispatch(RemoveImage(image));
             })
             .fail(function(err){
                 console.error("error",err);

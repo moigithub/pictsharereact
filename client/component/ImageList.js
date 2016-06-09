@@ -38,7 +38,7 @@ class Image extends Component {
 Image.propTypes ={
     title: PropTypes.string, 
     imageURL: PropTypes.string, 
-    likesCount: PropTypes.func, 
+    likesCount: PropTypes.number, 
     onDelete: PropTypes.func, 
     onLikeClick: PropTypes.func, 
     onDisLikeClick: PropTypes.func
