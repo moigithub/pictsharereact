@@ -21,9 +21,13 @@ import imageReducer from './reducers/imageReducer';
 
 require("./styles.css");
 
+import auth from './auth';
 import ImageForm from './component/ImageForm';
 import ImageList from './component/ImageList';
 import NavBar from './component/NavBar';
+import {SuccessLogin, SuccessLogout} from './component/SuccessLoginout';
+
+
 ///////////
 class Main extends Component {
     constructor(props){
@@ -32,15 +36,17 @@ class Main extends Component {
 
     render(){
         let data = {
-            logged: true,
-            user: {displayName: 'test'}
+            user: auth.getCurrentUser(),
+            logged : auth.isLoggedIn()
         };
         return (
             
             <div >
                 <NavBar {...data}/>
+                <div className="container">
                 <ImageForm/>
                 {this.props.children}
+                </div>
             </div>
             );
     }
@@ -119,8 +125,13 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
         <IndexRoute  component={ImageList}/>
-        <Route path="/images" component={ImageList}/>
+        <Route path="Picts/Me" component={ImageList}/>
         
+        <Route path="successLogin" component={SuccessLogin} />
+        <Route path="successLogout" component={SuccessLogout} />
+        
+        
+        <Redirect from="*" to="/" />
     </Route>
   </Router>
 </Provider>  

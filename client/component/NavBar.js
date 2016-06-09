@@ -20,15 +20,14 @@ export default class NavBar extends Component {
                     <span className="icon-bar"></span>
                     <span className="icon-bar"></span>
                   </button>
-                  <Link to="/" className="navbar-brand" >Home</Link>
+                  <Link to="/" className="navbar-brand" >PICT Share</Link>
                 </div>
                 
                 
             {logged ? 
                 <div className="collapse navbar-collapse" id="topmenu">
                     <ul className="nav navbar-nav">
-                        <li><Link to="/Poll/Me">My Pics</Link></li>
-                        <li><Link to="/Poll/New">New Pict</Link></li>
+                        <li><Link to="/Picts/Me">My Pics</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li className="navbar-text">Welcome <span>{user.displayName}</span></li>
