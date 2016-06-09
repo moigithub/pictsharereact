@@ -13,7 +13,7 @@ class Main extends Component {
         const {user}=this.props;
         console.log("Main render",this.props);
         let data = {
-            user: user,
+            user: user.twitter,
             logged : !!user._id
         };
         return (

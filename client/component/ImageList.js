@@ -15,11 +15,11 @@ class Image extends Component {
     }
     
     render(){
-        const {title, imageURL, likesCount, onDelete, onLikeClick, onDisLikeClick} = this.props;
+        const {title, imageURL, likesCount, onDelete, onLikeClick, onDisLikeClick, showDeleteButton} = this.props;
         const NO_IMAGE_URL= 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png';
         return(
             <div className ="ImageBox">
-                <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>
+                {showDeleteButton && <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>}
                 {this.state.imageOk ?
                     <img src={imageURL} className="img-responsive" onError={this.brokenImage} />
                 :
@@ -41,7 +41,8 @@ Image.propTypes ={
     likesCount: PropTypes.number, 
     onDelete: PropTypes.func, 
     onLikeClick: PropTypes.func, 
-    onDisLikeClick: PropTypes.func
+    onDisLikeClick: PropTypes.func,
+    showDeleteButton: PropTypes.bool
 };
 
 class ImageList extends Component {
@@ -50,12 +51,14 @@ class ImageList extends Component {
     }
     
     render(){
+        const {removeImage, likesInc, likesDec, user, images} = this.props;
         return (
             <div>
-                {this.props.images.map((img,i)=><Image key={i} {...img} 
-                            onDelete={()=>this.props.removeImage(img)} 
-                            onLikeClick={()=>this.props.likesInc(img)}
-                            onDisLikeClick={()=>this.props.likesDec(img)}
+                {images.map((img,i)=><Image key={i} {...img} 
+                            onDelete={()=>removeImage(img)} 
+                            onLikeClick={()=>likesInc(img)}
+                            onDisLikeClick={()=>likesDec(img)}
+                            showDeleteButton={!!user._id}
                             />)
                     
                 }
@@ -65,6 +68,7 @@ class ImageList extends Component {
 }
 ImageList.propTypes ={
     images: PropTypes.array,
+    user: PropTypes.object,
     removeImage: PropTypes.func,
     likesInc: PropTypes.func,
     likesDec: PropTypes.func
@@ -72,7 +76,8 @@ ImageList.propTypes ={
 
 function mapStateToProps(state, ownProps){
     return {
-        images: state.images
+        images: state.images,
+        user: state.user
     };
 }
 function mapDispatchToProps(dispatch){
