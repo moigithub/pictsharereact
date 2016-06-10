@@ -40,8 +40,7 @@ const initialState = {
     images:[
  //       {_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:1},
  //       {_id:2, title:'i dun care', imageURL:'https://s-media-cache-ak0.pinimg.com/236x/04/0b/aa/040baad9f12d5fa530a833055cb8647b.jpg', likesCount:9, userId:1}
-        ],
-    user:{}
+        ]
 };
 const createStoreWithThunk = applyMiddleware(thunk)(createStore);
 const allReducers = combineReducers({"images":imageReducer});
@@ -68,8 +67,8 @@ function requireAuth(nextState, replace) {
       pathname: '/auth/twitter' // only work if auth/twiter if part of <Route> list
     })
     */
-    //window.location = "/";
-    alert("not logged");
+    window.location = "/";
+    //alert("not logged");
     
     
     //router.replace({ pathname, query, state }) // new "location descriptor"

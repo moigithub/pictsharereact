@@ -11,7 +11,6 @@ module.exports = {
                 user.userId = data._id;
                 localStorage.token = data._id;
                 localStorage.userData = JSON.stringify(user);
-                //localStorage.displayName = data.twitter.displayName;
                // console.log("auth login",user);
                 //this.setState({user: JSON.stringify(data)});
                 
@@ -28,7 +27,7 @@ module.exports = {
             .done((data)=>{
                 user={};
                 delete localStorage.token;
-                //delete localStorage.displayName;
+                delete localStorage.userData;
             //    console.log("auth logged out");
                 if(cb) cb();
             })

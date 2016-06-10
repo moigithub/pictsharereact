@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/imageActions';
+import auth from '../auth';
 
 class ImageForm extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class ImageForm extends Component {
             title: this.refs.title.value, 
             imageURL: this.refs.imageurl.value, 
             likesCount:0,
-            userId:this.props.user._id
+            userId:this.props.user.userId
         };
         console.log("submit",imageData);
         this.props.addImage(imageData);
@@ -51,7 +52,7 @@ ImageForm.propTypes ={
 };
 
 function mapStateToProps(state){
-    return {images:state.images, user:state.user};
+    return {images:state.images, user:auth.getCurrentUser()};
 }
 function mapDispatchToProps(dispatch){
     return {

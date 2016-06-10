@@ -86,7 +86,7 @@ function filter(images, filter, uid){
 }
 
 function mapStateToProps(state, ownProps){
-    console.log("mapState2Props ownProps", ownProps);
+    console.log("imagelist mapState2Props ownProps", ownProps,auth.getCurrentUser());
     return {
         images: filter(state.images, ownProps.params.filter || 'all', auth.getCurrentUser().userId),
         user: auth.getCurrentUser()

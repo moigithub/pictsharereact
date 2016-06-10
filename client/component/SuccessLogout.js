@@ -15,14 +15,13 @@ export default class SuccessLogout extends React.Component {
             auth.logout(function(){
                 // redirect to /
                 
-                setTimeout( browserHistory.push('/') ,500);
+                setTimeout( browserHistory.push('/') ,100);
             });
     }
     
     render(){
         return (
             <div>
-                <h1>Thanks for playing with us!</h1>
                 <p>...redirecting to homepage</p>
             </div>
             );
