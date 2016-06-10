@@ -1,13 +1,13 @@
 'use strict';
 
 
-import React, {PropTypes, Component} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory, IndexRoute, Redirect} from 'react-router';
+import { Router, Route,  browserHistory, IndexRoute, Redirect} from 'react-router';
 
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 // const Provider = require('react-redux').Provider
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import imageReducer from './reducers/imageReducer';
@@ -16,7 +16,7 @@ import {getImagesFromServer} from './actions/imageActions';
 import auth from './auth';
 
 // import $ from 'jquery';
-//var $ = require("jquery");
+var $ = require("jquery");
 
 //require('es6-promise').polyfill();
 //import fetch from 'isomorphic-fetch'
@@ -76,6 +76,8 @@ function requireAuth(nextState, replace) {
   }
 }
 
+
+/////////////
 ReactDOM.render((
 <Provider store={Store}>
   <Router history={browserHistory}>

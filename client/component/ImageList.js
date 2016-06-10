@@ -4,6 +4,18 @@ import {withRouter} from 'react-router';
 import * as imageActions from '../actions/imageActions';
 import auth from '../auth';
 
+//////////
+var Masonry = require('react-masonry-component');
+// init Masonry
+
+var masonryOptions= {
+  // options...
+  //itemSelector: '.grid-item',
+  //columnWidth: 200,
+  transitionDuration: 0
+};
+
+
 class Image extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +33,8 @@ class Image extends Component {
         const NO_IMAGE_URL= 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png';
         const showButton = user && user.userId==userId ;
         return(
-            <div className ="ImageBox">
+            <div className ="ImageBox grid-item">
+           
                 {showButton && <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>}
                 {this.state.imageOk ?
                     <img src={imageURL} className="img-responsive" onError={this.brokenImage} />
@@ -34,6 +47,7 @@ class Image extends Component {
                     <span className="LikeCount">{likesCount}</span>
                     <button className="LikeBtnDown btn btn-info" onClick={onDisLikeClick}>-1</button>
                 </div>
+          
             </div>
         );
     }
@@ -58,15 +72,22 @@ class ImageList extends Component {
         const {removeImage, likesInc, likesDec, user, images} = this.props;
         //console.log("imagelist props",this.props);
         return (
-            <div>
-                {images.map((img,i)=><Image key={i} {...img} 
-                            onDelete={()=>removeImage(img)} 
-                            onLikeClick={()=>likesInc(img)}
-                            onDisLikeClick={()=>likesDec(img)}
-                            user={user}
-                            />)
-                    
-                }
+            <div className="grid">
+                 <Masonry
+                    className={'my-gallery-class'} // default '' 
+                    elementType={'div'} // default 'div' 
+                    options={masonryOptions} // default {} 
+                    disableImagesLoaded={false} // default false 
+                >
+                    {images.map((img,i)=><Image key={i} {...img} 
+                                onDelete={()=>removeImage(img)} 
+                                onLikeClick={()=>likesInc(img)}
+                                onDisLikeClick={()=>likesDec(img)}
+                                user={user}
+                                />)
+                        
+                    }
+                </Masonry>
             </div>
         );
     }
