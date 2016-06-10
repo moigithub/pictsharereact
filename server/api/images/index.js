@@ -44,6 +44,22 @@ router.delete('/:id', function(req, res) {
   });
 });
 
+router.put('/:id', function(req, res) {
+  if(req.body._id) { delete req.body._id; }
+  Images.findById(req.params.id, function (err, img) {
+    if (err) { return handleError(res, err); }
+    if(!img) { return res.status(404).send('Not Found'); }
+    //var updated = _.merge(votes, req.body);
+    //var updated = _.extend(votes, req.body);
+    //////////////////////
+    img.likesCount = req.body.likesCount;
+    
+    img.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.status(200).json(img);
+    });
+  });
+});
 
 function handleError(res, err) {
   return res.status(500).send(err);
