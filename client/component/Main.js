@@ -3,20 +3,20 @@ import NavBar from './NavBar';
 import ImageForm from './ImageForm';
 
 import {connect} from 'react-redux';
+import auth from '../auth';
 
-class Main extends Component {
+export default class Main extends Component {
     constructor(props){
         super(props);
     }
 
     render(){
-        const {user}=this.props;
         //console.log("Main render",this.props);
         
         //todo pull data from localStorage
         let data = {
-            user: user.twitter,
-            logged : !!user._id
+            user: auth.getCurrentUser(),
+            logged : auth.isLoggedIn()
         };
         return (
             
@@ -35,10 +35,5 @@ Main.propTypes={
     user: PropTypes.object
 };
 
-function mapStateToProps(state, ownProps){
-    return {
-        user: state.user
-    };
-}
 
-export default connect(mapStateToProps)(Main);
+

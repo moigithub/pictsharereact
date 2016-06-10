@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute, Redirect} from 'react-router';
 import {connect} from 'react-redux';
-import * as userActions from '../actions/userActions';
+import auth from '../auth';
 
-class SuccessLogin extends React.Component {
+export default class SuccessLogin extends React.Component {
     constructor(props){
         super(props);
         
@@ -12,7 +12,7 @@ class SuccessLogin extends React.Component {
     componentDidMount(){
         
             // request user data
-            this.props.login(function(){
+            auth.login(function(){
                 // redirect to /
                 
                 setTimeout( browserHistory.push('/') ,1000);
@@ -29,16 +29,8 @@ class SuccessLogin extends React.Component {
     }
     
 }
-SuccessLogin.propTypes ={
-    login: PropTypes.func
-};
 
 
-function mapStateToProps(state, ownProps){
-    return {
-        user: state.user
-    };
-}
 /*
 function mapDispatchToProps(dispatch){
     return {
@@ -47,5 +39,4 @@ function mapDispatchToProps(dispatch){
 }
 */
 //// version reducida de mapDispatchToProps, los parametros se pasan en el mismo orden
-// ejemplo login(cb) : userActions.SetUserAsync(cb)
-export default connect(mapStateToProps, {login: userActions.SetUserAsync })(SuccessLogin);
+

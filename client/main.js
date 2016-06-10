@@ -11,8 +11,9 @@ import { Provider, connect } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import imageReducer from './reducers/imageReducer';
-import userReducer from './reducers/userReducer';
 import {getImagesFromServer} from './actions/imageActions';
+
+import auth from './auth';
 
 // import $ from 'jquery';
 //var $ = require("jquery");
@@ -43,7 +44,7 @@ const initialState = {
     user:{}
 };
 const createStoreWithThunk = applyMiddleware(thunk)(createStore);
-const allReducers = combineReducers({"images":imageReducer, "user":userReducer});
+const allReducers = combineReducers({"images":imageReducer});
 const Store = createStoreWithThunk(allReducers, initialState);
 // dispatch to get initial data from server
 Store.dispatch(getImagesFromServer());
@@ -61,7 +62,7 @@ const stockStore = createStore(
 
 function requireAuth(nextState, replace) {
     console.log("route requireauth",Store.getState());
-  if (!Store.getState().user._id) {
+  if (!auth.isLoggedIn()) {
       /*
     replace({
       pathname: '/auth/twitter' // only work if auth/twiter if part of <Route> list

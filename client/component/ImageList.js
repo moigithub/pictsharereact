@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import * as imageActions from '../actions/imageActions';
+import auth from '../auth';
 
 class Image extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class Image extends Component {
     render(){
         const {user, userId, title, imageURL, likesCount, onDelete, onLikeClick, onDisLikeClick} = this.props;
         const NO_IMAGE_URL= 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png';
-        const showButton = user && user._id==userId ;
+        const showButton = user && user.userId==userId ;
         return(
             <div className ="ImageBox">
                 {showButton && <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>}
@@ -79,7 +80,7 @@ ImageList.propTypes ={
 };
 
 function filter(images, filter, uid){
-    console.log("filter form imagelist withRouter", filter, images);
+    console.log("filter form imagelist withRouter", filter, images , uid);
     if(filter.toLowerCase()=="me"){ return images.filter(img=>img.userId===uid); }
     return images;
 }
@@ -87,8 +88,8 @@ function filter(images, filter, uid){
 function mapStateToProps(state, ownProps){
     console.log("mapState2Props ownProps", ownProps);
     return {
-        images: filter(state.images, ownProps.params.filter || 'all', state.user._id),
-        user: state.user
+        images: filter(state.images, ownProps.params.filter || 'all', auth.getCurrentUser().userId),
+        user: auth.getCurrentUser()
     };
 }
 function mapDispatchToProps(dispatch){

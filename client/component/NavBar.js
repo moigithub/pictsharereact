@@ -8,7 +8,7 @@ export default class NavBar extends Component {
 
     
     render(){
-        //console.log("navbar props",this.props);
+        console.log("navbar props",this.props);
         const { logged, user } = this.props;
         
         return(
