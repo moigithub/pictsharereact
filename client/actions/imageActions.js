@@ -1,6 +1,7 @@
 
 import { ADD_IMAGE,
      REMOVE_IMAGE,
+     UPDATE_IMAGE,
      LIKE_INC,
      LIKE_DEC
      }
@@ -12,6 +13,10 @@ export const AddImage=(image)=>{
 
 export function RemoveImage(image){
     return {type: REMOVE_IMAGE, image:image};
+};
+
+export const UpdateImage=(image)=>{
+    return {type: UPDATE_IMAGE, image:image};
 };
 
 export const LikeInc=(image)=>{
@@ -96,6 +101,52 @@ export function RemoveImageAsync(image) {
             .done(function(data){
                 //console.log("success",data);
                 dispatch(RemoveImage(image));
+            })
+            .fail(function(err){
+                console.error("error",err);
+//                toastr.error('Error: '+err);
+            });
+    };
+
+}
+
+
+function serverUpdate(id, image){
+    return $.ajax({
+        url:`/api/images/${id}`,
+        method:"PUT",
+        data: image,
+    //    contentType: "application/json; charset=utf-8",
+    //    processData :false,        // when true (by default) process data as form encoded
+        dataType: 'json',  // response from server should be object
+    //    headers: { "Authorization": user.tk },
+    });
+}
+export function LikeIncAsync(image) {
+    //console.log("remove imageasync",image);
+    return function(dispatch){
+        /// http request
+        
+            serverUpdate(image._id, Object.assign({}, image, {likesCount: ++image.likesCount}))
+            .done(function(data){
+                //console.log("success",data);
+                dispatch(UpdateImage(data));
+            })
+            .fail(function(err){
+                console.error("error",err);
+//                toastr.error('Error: '+err);
+            });
+    };
+
+}
+export function LikeDecAsync(image) {
+    //console.log("remove imageasync",image);
+    return function(dispatch){
+        /// http request
+            serverUpdate(image._id, Object.assign({}, image, {likesCount: --image.likesCount}))
+            .done(function(data){
+                //console.log("success",data);
+                dispatch(UpdateImage(data));
             })
             .fail(function(err){
                 console.error("error",err);

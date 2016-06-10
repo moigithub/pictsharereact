@@ -151,8 +151,8 @@ function mapStateToProps(state, ownProps){
 function mapDispatchToProps(dispatch){
     return {
         removeImage: image=>dispatch(imageActions.RemoveImageAsync(image)),
-        likesInc: image=>dispatch(imageActions.LikeInc(image)),
-        likesDec: image=>dispatch(imageActions.LikeDec(image))
+        likesInc: image=>dispatch(imageActions.LikeIncAsync(image)),
+        likesDec: image=>dispatch(imageActions.LikeDecAsync(image))
     };
 }
 

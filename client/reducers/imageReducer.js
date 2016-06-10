@@ -1,5 +1,6 @@
 import { ADD_IMAGE,
      REMOVE_IMAGE,
+     UPDATE_IMAGE,
      LIKE_INC,
      LIKE_DEC }
      from '../actions/actionConstants';
@@ -16,6 +17,13 @@ export default function imageReducer(state=[], action){
         case REMOVE_IMAGE:
             //console.log("reducer img", action,"state" ,state);
             return state.filter(image=>image._id!==action.image._id);
+        case UPDATE_IMAGE:
+            return state.map(image=>{
+                    if(image._id==action.image._id){
+                        return action.image;
+                    }
+                    return image;
+                });
         case LIKE_INC:
             /*
             return [...state.filter(image=>image._id!==action.image._id), 
