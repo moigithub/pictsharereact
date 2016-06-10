@@ -17,13 +17,24 @@ export default function imageReducer(state=[], action){
             //console.log("reducer img", action,"state" ,state);
             return state.filter(image=>image._id!==action.image._id);
         case LIKE_INC:
+            /*
             return [...state.filter(image=>image._id!==action.image._id), 
                 Object.assign({}, action.image, {likesCount: ++action.image.likesCount})
                 ];
+            */
+            return state.map(image=>{
+                    if(image._id==action.image._id){
+                        return Object.assign({}, action.image, {likesCount: ++action.image.likesCount});
+                    }
+                    return image;
+                });
         case LIKE_DEC:
-            return [...state.filter(image=>image._id!==action.image._id), 
-                Object.assign({}, action.image, {likesCount: --action.image.likesCount})
-                ];
+            return state.map(image=>{
+                    if(image._id==action.image._id){
+                        return Object.assign({}, action.image, {likesCount: --action.image.likesCount});
+                    }
+                    return image;
+                });
     }
     return state;
 };

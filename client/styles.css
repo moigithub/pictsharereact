@@ -7,14 +7,16 @@ body {
     color:#222;
     margin-bottom: 60px;
 
-    background: rgba(230,138,122,1);
-    background: -moz-linear-gradient(-45deg, rgba(230,138,122,1) 0%, rgba(212,32,59,1) 100%);
-    background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(230,138,122,1)), color-stop(100%, rgba(212,32,59,1)));
-    background: -webkit-linear-gradient(-45deg, rgba(230,138,122,1) 0%, rgba(212,32,59,1) 100%);
-    background: -o-linear-gradient(-45deg, rgba(230,138,122,1) 0%, rgba(212,32,59,1) 100%);
-    background: -ms-linear-gradient(-45deg, rgba(230,138,122,1) 0%, rgba(212,32,59,1) 100%);
-    background: linear-gradient(135deg, rgba(230,138,122,1) 0%, rgba(212,32,59,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e68a7a', endColorstr='#d4203b', GradientType=1 );
+ 
+
+background: rgba(200,205,177,1);
+background: -moz-linear-gradient(-45deg, rgba(209,11,60,.5) 0%, rgba(109,0,25,1) 100%);
+background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(209,11,60,.5)), color-stop(100%, rgba(109,0,25,1)));
+background: -webkit-linear-gradient(-45deg, rgba(209,11,60,.5) 0%, rgba(109,0,25,1) 100%);
+background: -o-linear-gradient(-45deg, rgba(209,11,60,.5) 0%, rgba(109,0,25,1) 100%);
+background: -ms-linear-gradient(-45deg, rgba(209,11,60,.5) 0%, rgba(109,0,25,1) 100%);
+background: linear-gradient(135deg, rgba(209,11,60,.5) 0%, rgba(109,0,25,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d10b3c', endColorstr='#6d0019', GradientType=1 );
 }
 
 footer {
@@ -27,34 +29,55 @@ footer {
 }
 
 .ImageBox {
-    width: 200px;
+    width: 180px;
 
-    float:left;
-    box-sizing: border-box;
-    margin: 5px;
     position: relative;
     overflow: hidden;
-    background-color:#222;
+    background-color:#444;
     
+    padding:13px 15px;
+    margin:8px ;
+
+    
+    border: 2px solid #000;
+    border-right: 2px solid #353535;
+    border-bottom: 2px solid #353535;
+    border-left: 2px solid #111;
+    border-top: 2px solid #111;
+    
+    
+    box-sizing: border-box;
     border-radius: 10px 10px 10px 10px;
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;
-    border: 10px solid #222;
+    
 
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    
+    
+
 }
 
 .ImageBox .deleteBtn {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 2px;
+    top: 2px;
+    
+}
+
+.img-container {
+    padding:5px;
+    width:100%;
+    background-color: #242424;
 }
 
 .ImageBox img {
-    width: 100%;
-    float: left;
+    width:90%;
+    margin: auto;
+    
+    
 }
 
 .ImageTitle {
@@ -70,6 +93,7 @@ footer {
 
 .likeBtns {
     color: #fff;
+    width:100%
 }
 
 .LikeCount{
@@ -79,4 +103,31 @@ footer {
 .LikeBtnUp,
 .LikeBtnDown {
     
+}
+
+
+
+.masonry,
+.masonry .grid-item {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+      -ms-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+      -ms-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.masonry .grid-item {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+      -ms-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
 }

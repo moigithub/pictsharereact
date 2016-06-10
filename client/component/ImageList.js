@@ -12,7 +12,14 @@ var masonryOptions= {
   // options...
   //itemSelector: '.grid-item',
   //columnWidth: 200,
-  transitionDuration: 0
+  transitionDuration: 1,
+  isAnimated: true,
+  animationOptions: {
+    duration: 750,
+    easing: 'linear',
+    queue: false
+  }
+  
 };
 
 
@@ -35,17 +42,19 @@ class Image extends Component {
         return(
             <div className ="ImageBox grid-item">
            
-                {showButton && <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>}
+                {showButton && <button className="btn btn-danger deleteBtn" onClick={onDelete}><i className="fa fa-trash-o" aria-hidden="true"></i></button>}
+                <div className="img-container">
                 {this.state.imageOk ?
                     <img src={imageURL} className="img-responsive" onError={this.brokenImage} />
                 :
                     <img src={NO_IMAGE_URL} className="img-responsive" />
                 }
+                </div>
                 <div className="ImageTitle">{title}</div>
                 <div className="likeBtns">
-                    <button className="LikeBtnUp btn btn-info" onClick={onLikeClick}>+1</button>
+                    <button className="LikeBtnUp btn btn-info" onClick={onLikeClick}><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+                    <button className="LikeBtnDown btn btn-info" onClick={onDisLikeClick}><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
                     <span className="LikeCount">{likesCount}</span>
-                    <button className="LikeBtnDown btn btn-info" onClick={onDisLikeClick}>-1</button>
                 </div>
           
             </div>
@@ -66,18 +75,44 @@ Image.propTypes ={
 class ImageList extends Component {
     constructor(props) {
         super(props);
+        this.handleImagesLoaded = this.handleImagesLoaded.bind(this);
+        
+        
     }
-    
+/*    
+    masonry={};
+
+    handleImagesLoaded(imagesLoadedInstance) {
+        //console.log("instance",imagesLoadedInstance);
+        imagesLoadedInstance.jqDeferred.progress( function(instance, image){
+            var result = image.isLoaded ? 'loaded' : 'broken';
+           // console.log( 'image is ' + result + ' for ' + image.img.src);
+            
+            //jquery 
+            var image = $(image.img)
+                    .addClass("animate tada");
+
+                // Find and show the item.
+                var item = image
+                    .parents(".grid-item")
+                    .show();
+
+                // Lay out Masonry.
+                //console.log("yoyo",this.masonry);
+        });
+    }
+*/ 
     render(){
         const {removeImage, likesInc, likesDec, user, images} = this.props;
         //console.log("imagelist props",this.props);
         return (
             <div className="grid">
                  <Masonry
-                    className={'my-gallery-class'} // default '' 
+                    className={'masonry'} // default '' 
                     elementType={'div'} // default 'div' 
                     options={masonryOptions} // default {} 
                     disableImagesLoaded={false} // default false 
+                    //onImagesLoaded={this.handleImagesLoaded}
                 >
                     {images.map((img,i)=><Image key={i} {...img} 
                                 onDelete={()=>removeImage(img)} 
@@ -101,13 +136,13 @@ ImageList.propTypes ={
 };
 
 function filter(images, filter, uid){
-    console.log("filter form imagelist withRouter", filter, images , uid);
+    //console.log("filter form imagelist withRouter", filter, images , uid);
     if(filter.toLowerCase()=="me"){ return images.filter(img=>img.userId===uid); }
     return images;
 }
 
 function mapStateToProps(state, ownProps){
-    console.log("imagelist mapState2Props ownProps", ownProps,auth.getCurrentUser());
+    //console.log("imagelist mapState2Props ownProps", ownProps,auth.getCurrentUser());
     return {
         images: filter(state.images, ownProps.params.filter || 'all', auth.getCurrentUser().userId),
         user: auth.getCurrentUser()

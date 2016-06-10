@@ -97,6 +97,10 @@ if (isDev ){
         test: /(\.css)$/,  //|\.scss
         include: path.join(__dirname, 'client'),
         loader: ExtractTextPlugin.extract('css?sourceMap') //!sass?sourceMap
+      },
+      {
+        test: /masonry|imagesloaded|fizzy\-ui\-utils|desandro\-|outlayer|get\-size|doc\-ready|eventie|eventemitter/,
+        loader: 'imports?define=>false&this=>window'
       }
     ];
       
