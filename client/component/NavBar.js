@@ -8,9 +8,9 @@ export default class NavBar extends Component {
 
     
     render(){
-        console.log("navbar props",this.props);
+        //console.log("navbar props",this.props);
         const { logged, user } = this.props;
-        console.log("navbar", this.props);
+        
         return(
             <nav className="menu navbar navbar-inverse">
                         
@@ -28,7 +28,8 @@ export default class NavBar extends Component {
             {logged ? 
                 <div className="collapse navbar-collapse" id="topmenu">
                     <ul className="nav navbar-nav">
-                        <li><Link to="/Picts/Me">My Pics</Link></li>
+                        <li><Link to="/Picts">All Picts</Link></li>
+                        <li><Link to={"/Picts/Me"}>My Picts</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li className="navbar-text">Welcome <span>{user.displayName}</span></li>

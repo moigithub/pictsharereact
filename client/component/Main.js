@@ -11,7 +11,9 @@ class Main extends Component {
 
     render(){
         const {user}=this.props;
-        console.log("Main render",this.props);
+        //console.log("Main render",this.props);
+        
+        //todo pull data from localStorage
         let data = {
             user: user.twitter,
             logged : !!user._id

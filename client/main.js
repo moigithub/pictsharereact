@@ -60,14 +60,15 @@ const stockStore = createStore(
 /// FIN STORE ////
 
 function requireAuth(nextState, replace) {
-    //console.log(nextState.location);
-  if (!nextState.user._id) {
+    console.log("route requireauth",Store.getState());
+  if (!Store.getState().user._id) {
       /*
     replace({
       pathname: '/auth/twitter' // only work if auth/twiter if part of <Route> list
     })
     */
-    window.location = "/";
+    //window.location = "/";
+    alert("not logged");
     
     
     //router.replace({ pathname, query, state }) // new "location descriptor"
@@ -80,8 +81,8 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Main}>
         <IndexRoute  component={ImageList}/>
-        <Route path="Picts/Me" component={ImageList}  onEnter={requireAuth} />
-        
+        <Route path="Picts/(:filter)" component={ImageList}  onEnter={requireAuth} />
+
         <Route path="successLogin" component={SuccessLogin} />
         <Route path="successLogout" component={SuccessLogout} />
         

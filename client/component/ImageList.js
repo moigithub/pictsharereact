@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import * as imageActions from '../actions/imageActions';
 
 class Image extends Component {
@@ -15,11 +16,12 @@ class Image extends Component {
     }
     
     render(){
-        const {title, imageURL, likesCount, onDelete, onLikeClick, onDisLikeClick, showDeleteButton} = this.props;
+        const {user, userId, title, imageURL, likesCount, onDelete, onLikeClick, onDisLikeClick} = this.props;
         const NO_IMAGE_URL= 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png';
+        const showButton = user && user._id==userId ;
         return(
             <div className ="ImageBox">
-                {showDeleteButton && <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>}
+                {showButton && <button className="btn btn-danger deleteBtn" onClick={onDelete}>X</button>}
                 {this.state.imageOk ?
                     <img src={imageURL} className="img-responsive" onError={this.brokenImage} />
                 :
@@ -36,13 +38,14 @@ class Image extends Component {
     }
 }
 Image.propTypes ={
+    user: PropTypes.object, 
+    userId: PropTypes.string, 
     title: PropTypes.string, 
     imageURL: PropTypes.string, 
     likesCount: PropTypes.number, 
     onDelete: PropTypes.func, 
     onLikeClick: PropTypes.func, 
-    onDisLikeClick: PropTypes.func,
-    showDeleteButton: PropTypes.bool
+    onDisLikeClick: PropTypes.func
 };
 
 class ImageList extends Component {
@@ -52,13 +55,14 @@ class ImageList extends Component {
     
     render(){
         const {removeImage, likesInc, likesDec, user, images} = this.props;
+        //console.log("imagelist props",this.props);
         return (
             <div>
                 {images.map((img,i)=><Image key={i} {...img} 
                             onDelete={()=>removeImage(img)} 
                             onLikeClick={()=>likesInc(img)}
                             onDisLikeClick={()=>likesDec(img)}
-                            showDeleteButton={!!user}
+                            user={user}
                             />)
                     
                 }
@@ -74,9 +78,16 @@ ImageList.propTypes ={
     likesDec: PropTypes.func
 };
 
+function filter(images, filter, uid){
+    console.log("filter form imagelist withRouter", filter, images);
+    if(filter.toLowerCase()=="me"){ return images.filter(img=>img.userId===uid); }
+    return images;
+}
+
 function mapStateToProps(state, ownProps){
+    console.log("mapState2Props ownProps", ownProps);
     return {
-        images: state.images,
+        images: filter(state.images, ownProps.params.filter || 'all', state.user._id),
         user: state.user
     };
 }
@@ -88,4 +99,4 @@ function mapDispatchToProps(dispatch){
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ImageList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ImageList));

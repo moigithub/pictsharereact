@@ -17,7 +17,7 @@ export const ClearUser = ()=>{
 ///////////////////////////////////////////////////////////////////////////////
 
 export function SetUserAsync(cb) {
-    console.log("SetUserAsync");
+    //console.log("SetUserAsync");
     return function(dispatch){
         /// http request
 
@@ -27,7 +27,7 @@ export function SetUserAsync(cb) {
                 localStorage.token = data._id;
                 localStorage.userData = JSON.stringify(data);
                 
-                console.log("SetUserAsync success",data);
+                //console.log("SetUserAsync success",data);
                 dispatch(SetUser(data));
                 
                 if(typeof(cb) == "function") cb();
@@ -42,7 +42,7 @@ export function SetUserAsync(cb) {
 
 
 export function ClearUserAsync(cb) {
-    console.log("ClearUserAsync");
+    //console.log("ClearUserAsync");
     return function(dispatch){
         /// http request
         $.get("/auth/logout")

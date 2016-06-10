@@ -26,7 +26,7 @@ export const LikeDec=(image)=>{
 /// async actions
 ///////////////////////////////////////////////////////////////////////////////
 export function getImagesFromServer() {
-    console.log("getImagesFromServer");
+    //console.log("getImagesFromServer");
     return function(dispatch){
         /// http request
         var API_URL ="/api/images";
@@ -38,7 +38,7 @@ export function getImagesFromServer() {
         //    headers: { "Authorization": user.tk },
         })
             .done(function(data){
-                console.log("success",data);
+                //console.log("success",data);
                 data.forEach(function(image){
                     dispatch(AddImage(image));
                 });
@@ -52,7 +52,7 @@ export function getImagesFromServer() {
 }
 
 export function AddImageAsync(image) {
-    console.log("addimageasync",image);
+    //console.log("addimageasync",image);
     return function(dispatch){
         /// http request
         var API_URL ="/api/images";
@@ -67,7 +67,7 @@ export function AddImageAsync(image) {
         //    headers: { "Authorization": user.tk },
         })
             .done(function(data){
-                console.log("success",data);
+                //console.log("success",data);
                 dispatch(AddImage(data));
             })
             .fail(function(err){
@@ -79,7 +79,7 @@ export function AddImageAsync(image) {
 }
 
 export function RemoveImageAsync(image) {
-    console.log("remove imageasync",image);
+    //console.log("remove imageasync",image);
     return function(dispatch){
         /// http request
         
@@ -94,7 +94,7 @@ export function RemoveImageAsync(image) {
         //    headers: { "Authorization": user.tk },
         })
             .done(function(data){
-                console.log("success",data);
+                //console.log("success",data);
                 dispatch(RemoveImage(image));
             })
             .fail(function(err){

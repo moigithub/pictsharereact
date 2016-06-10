@@ -39,9 +39,13 @@ function mapStateToProps(state, ownProps){
         user: state.user
     };
 }
+/*
 function mapDispatchToProps(dispatch){
     return {
         login: (cb)=>dispatch(userActions.SetUserAsync(cb))
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SuccessLogin);
+*/
+//// version reducida de mapDispatchToProps, los parametros se pasan en el mismo orden
+// ejemplo login(cb) : userActions.SetUserAsync(cb)
+export default connect(mapStateToProps, {login: userActions.SetUserAsync })(SuccessLogin);
