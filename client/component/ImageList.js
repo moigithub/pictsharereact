@@ -75,7 +75,7 @@ Image.propTypes ={
 class ImageList extends Component {
     constructor(props) {
         super(props);
-        this.handleImagesLoaded = this.handleImagesLoaded.bind(this);
+//        this.handleImagesLoaded = this.handleImagesLoaded.bind(this);
         
         
     }

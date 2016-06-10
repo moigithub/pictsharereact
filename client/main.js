@@ -5,12 +5,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route,  browserHistory, IndexRoute, Redirect} from 'react-router';
 
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+
 // const Provider = require('react-redux').Provider
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-
-import imageReducer from './reducers/imageReducer';
 import {getImagesFromServer} from './actions/imageActions';
 
 import auth from './auth';
@@ -29,12 +26,11 @@ import ImageList from './component/ImageList';
 import SuccessLogin from './component/SuccessLogin';
 import SuccessLogout from './component/SuccessLogout';
 import Main from './component/Main';
-
+import configureStore from './Store';
 ///////////
 
 
 ///// STORE ///
-
 
 const initialState = {
     images:[
@@ -42,21 +38,12 @@ const initialState = {
  //       {_id:2, title:'i dun care', imageURL:'https://s-media-cache-ak0.pinimg.com/236x/04/0b/aa/040baad9f12d5fa530a833055cb8647b.jpg', likesCount:9, userId:1}
         ]
 };
-const createStoreWithThunk = applyMiddleware(thunk)(createStore);
-const allReducers = combineReducers({"images":imageReducer});
-const Store = createStoreWithThunk(allReducers, initialState);
+
+const Store = configureStore();
 // dispatch to get initial data from server
 Store.dispatch(getImagesFromServer());
 
-/*
-const stockStore = createStore(
-  handleStocks,
-  initialState,
-  applyMiddleware(
-    thunk // lets us dispatch() functions
-  )
-)
-*/
+
 /// FIN STORE ////
 
 function requireAuth(nextState, replace) {
