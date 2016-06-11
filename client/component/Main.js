@@ -5,11 +5,17 @@ import ImageForm from './ImageForm';
 import {connect} from 'react-redux';
 import  * as auth from '../auth';
 
+
 export default class Main extends Component {
     constructor(props){
         super(props);
     }
-
+    
+    componentDidMount(){
+        //// sync user logged
+        auth.syncUserStatus();
+    }
+    
     render(){
         //console.log("Main render",this.props);
         

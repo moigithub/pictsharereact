@@ -1,5 +1,6 @@
 'use strict';
 /*global localStorage*/
+import {  browserHistory } from 'react-router';
 
 var user = {};  // is stored on client, so not affecting multiple users from diff part of world
 
@@ -58,13 +59,20 @@ export const isLoggedIn=function(){
 };
     
 export const syncUserStatus=function(cb){
+    var currentStatus = isLoggedIn();
+    
     $.get("/api/users/isLogged")
         .done((data)=>{
-            
-            this.login();
+            // if on server is logged in.. but not on client...
+            if (!currentStatus) {
+                browserHistory.push('/successLogin');
+            }
         })
         .fail(function() {
-            this.logout();
+            // if on server is NOT logged in.. but on client...
+            if (currentStatus) {
+                browserHistory.push('/successLogout');
+            }
         });
 };
 

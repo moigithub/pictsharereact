@@ -9,14 +9,14 @@ import { AddImage, RemoveImage, LikeInc } from '../actions/imageActions';
 
 
 export default function imageReducer(state=[], action){
-    //console.log("*********img reducer***********",action.type);
+    //console.log("*********img reducer***********",action);
     switch(action.type){
         case ADD_IMAGE:
             
             return [...state, action.image];
         case REMOVE_IMAGE:
             //console.log("reducer img", action,"state" ,state);
-            return state.filter(image=>image._id!==action.image._id);
+            return state.filter(image=>{ return image._id!==action.image._id});
         case UPDATE_IMAGE:
             return state.map(image=>{
                     if(image._id==action.image._id){

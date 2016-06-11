@@ -46,8 +46,7 @@ Store.dispatch(getImagesFromServer());
 
 /// FIN STORE ////
 
-//// sync user logged
-auth.syncUserStatus();
+
 
 function requireAuth(nextState, replace) {
     console.log("route requireauth",Store.getState());
