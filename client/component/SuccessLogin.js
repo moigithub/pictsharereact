@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import { Router, Route, Link, browserHistory, IndexRoute, Redirect} from 'react-router';
 import {connect} from 'react-redux';
-import auth from '../auth';
+import  * as auth from '../auth';
 
 export default class SuccessLogin extends React.Component {
     constructor(props){

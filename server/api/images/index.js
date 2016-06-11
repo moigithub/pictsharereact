@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var Images = require('./images.model');
+import {isLoggedIn} from '../auth';
 
 // all images
 router.get('/', function(req, res) {
@@ -14,7 +15,7 @@ router.get('/', function(req, res) {
 
 
 // images by user
-router.get('/user/:id', function(req, res) {
+router.get('/user/:id', isLoggedIn, function(req, res) {
     Images.find({userId: req.params.id}, function (err, images) {
         if(err) { return handleError(res, err); }
         return res.status(200).json(images);
@@ -23,7 +24,7 @@ router.get('/user/:id', function(req, res) {
 
 
 // create new images
-router.post('/', function(req, res) {
+router.post('/', isLoggedIn, function(req, res) {
     console.log("post image create",req.body);
     Images.create(req.body, function(err, images) {
         if(err) { return handleError(res, err); }
@@ -33,7 +34,7 @@ router.post('/', function(req, res) {
 
 
 // Deletes image
-router.delete('/:id', function(req, res) {
+router.delete('/:id', isLoggedIn, function(req, res) {
   Images.findById(req.params.id, function (err, images) {
     if(err) { return handleError(res, err); }
     if(!images) { return res.status(404).send('Not Found'); }
@@ -44,7 +45,7 @@ router.delete('/:id', function(req, res) {
   });
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id',  function(req, res) {
   if(req.body._id) { delete req.body._id; }
   Images.findById(req.params.id, function (err, img) {
     if (err) { return handleError(res, err); }

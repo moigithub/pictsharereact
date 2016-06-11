@@ -10,7 +10,7 @@ import { Router, Route,  browserHistory, IndexRoute, Redirect} from 'react-route
 import { Provider } from 'react-redux';
 import {getImagesFromServer} from './actions/imageActions';
 
-import auth from './auth';
+import * as auth from './auth';
 
 // import $ from 'jquery';
 var $ = require("jquery");
@@ -45,6 +45,9 @@ Store.dispatch(getImagesFromServer());
 
 
 /// FIN STORE ////
+
+//// sync user logged
+auth.syncUserStatus();
 
 function requireAuth(nextState, replace) {
     console.log("route requireauth",Store.getState());

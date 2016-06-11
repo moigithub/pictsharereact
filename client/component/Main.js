@@ -3,7 +3,7 @@ import NavBar from './NavBar';
 import ImageForm from './ImageForm';
 
 import {connect} from 'react-redux';
-import auth from '../auth';
+import  * as auth from '../auth';
 
 export default class Main extends Component {
     constructor(props){

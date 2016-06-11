@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import * as imageActions from '../actions/imageActions';
-import auth from '../auth';
+import  * as auth from '../auth';
 
 //////////
 var Masonry = require('react-masonry-component');
