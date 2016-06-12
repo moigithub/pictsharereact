@@ -1,7 +1,8 @@
+'use strict';
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/imageActions';
-import * as auth from '../auth';
+import * as auth from '../clientAuth';
 
 class ImageForm extends Component {
     constructor(props) {
@@ -56,7 +57,7 @@ function mapStateToProps(state){
 }
 function mapDispatchToProps(dispatch){
     return {
-        addImage: (image)=>{dispatch(actions.AddImageAsync(image))}
+        addImage: (image)=>{dispatch(actions.AddImageAsync(image));}
     };
 }
 

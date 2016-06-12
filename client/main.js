@@ -10,7 +10,7 @@ import { Router, Route,  browserHistory, IndexRoute, Redirect} from 'react-route
 import { Provider } from 'react-redux';
 import {getImagesFromServer} from './actions/imageActions';
 
-import * as auth from './auth';
+import * as auth from './clientAuth';
 
 // import $ from 'jquery';
 var $ = require("jquery");
@@ -22,11 +22,11 @@ var $ = require("jquery");
 require("./styles.css");
 
 
-import ImageList from './component/ImageList';
-import SuccessLogin from './component/SuccessLogin';
-import SuccessLogout from './component/SuccessLogout';
-import Main from './component/Main';
-import configureStore from './Store';
+import configureStore from './Store.js';
+import SuccessLogin from './component/SuccessLogin.js';
+import SuccessLogout from './component/SuccessLogout.js';
+import Main from './component/Main.js';
+import ImageList from './component/ImageList.js';
 ///////////
 
 

@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var Images = require('./images.model');
-import {isLoggedIn} from '../auth';
+var isLoggedIn = require('../auth').isLoggedIn;
 
 // all images
 router.get('/', function(req, res) {

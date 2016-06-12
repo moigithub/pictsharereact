@@ -134,7 +134,7 @@ app.use(function (req, res, next) {
 
   app.use('/api/images', require('./api/images'));
   app.use('/api/users', require('./api/users'));
-  app.use('/auth', require('./api/auth'));
+  app.use('/auth', require('./api/auth').router);
 
 /*
 // all undefined asset or api routes should return 404 (from yeoman code)

@@ -1,5 +1,6 @@
+'use strict';
 import React, {Component, PropTypes} from 'react';
-import { Router, Route, Link, browserHistory, IndexRoute, Redirect} from 'react-router';
+import { Link } from 'react-router';
 
 export default class NavBar extends Component {
     constructor(props) {

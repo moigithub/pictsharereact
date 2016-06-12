@@ -1,9 +1,10 @@
-import React, {Component, PropTypes} from 'react';
-import { Router, Route, Link, browserHistory, IndexRoute, Redirect} from 'react-router';
-import {connect} from 'react-redux';
-import  * as auth from '../auth';
+'use strict';
+import React, {Component} from 'react';
+import {   browserHistory } from 'react-router';
+//import {connect} from 'react-redux';
+import  * as auth from '../clientAuth';
 
-export default class SuccessLogin extends React.Component {
+export default class SuccessLogin extends Component {
     constructor(props){
         super(props);
         

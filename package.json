@@ -22,6 +22,7 @@
     "connect-mongo": "^1.2.0",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
+    "imports-loader": "^0.6.5",
     "jquery": "^2.2.4",
     "method-override": "^2.3.5",
     "mongoose": "^4.4.12",
@@ -37,7 +38,8 @@
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "request": "^2.72.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "toastr": "^2.1.2"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",

@@ -1,6 +1,7 @@
+'use strict';
 import React from 'react';
 
-const CourseForm = ({course, onSave, saving, onChange, errors}) => {
+const CourseForm = ({ onSave, saving}) => {
     return (
         <form>
             <h1>Manage Course</h1>

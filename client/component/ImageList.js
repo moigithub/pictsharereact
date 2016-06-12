@@ -1,8 +1,10 @@
+'use strict';
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import * as imageActions from '../actions/imageActions';
-import  * as auth from '../auth';
+import {RemoveImageAsync, LikeIncAsync, LikeDecAsync } from '../actions/imageActions.js';
+//import * as auth from '../auth.js';
+import {getCurrentUser} from '../clientAuth.js';
 
 //////////
 var Masonry = require('react-masonry-component');
@@ -79,39 +81,17 @@ class ImageList extends Component {
         
         
     }
-/*    
-    masonry={};
 
-    handleImagesLoaded(imagesLoadedInstance) {
-        //console.log("instance",imagesLoadedInstance);
-        imagesLoadedInstance.jqDeferred.progress( function(instance, image){
-            var result = image.isLoaded ? 'loaded' : 'broken';
-           // console.log( 'image is ' + result + ' for ' + image.img.src);
-            
-            //jquery 
-            var image = $(image.img)
-                    .addClass("animate tada");
-
-                // Find and show the item.
-                var item = image
-                    .parents(".grid-item")
-                    .show();
-
-                // Lay out Masonry.
-                //console.log("yoyo",this.masonry);
-        });
-    }
-*/ 
     render(){
         const {removeImage, likesInc, likesDec, user, images} = this.props;
         //console.log("imagelist props",this.props);
         return (
             <div className="grid">
                  <Masonry
-                    className={'masonry'} // default '' 
-                    elementType={'div'} // default 'div' 
-                    options={masonryOptions} // default {} 
-                    disableImagesLoaded={false} // default false 
+                    className={'masonry'} 
+                    elementType={'div'} 
+                    options={masonryOptions}
+                    disableImagesLoaded={false}
                     //onImagesLoaded={this.handleImagesLoaded}
                 >
                     {images.map((img,i)=><Image key={i} {...img} 
@@ -144,16 +124,17 @@ function filter(images, filter, uid){
 function mapStateToProps(state, ownProps){
     //console.log("imagelist mapState2Props ownProps", ownProps,auth.getCurrentUser());
     return {
-        images: filter(state.images, ownProps.params.filter || 'all', auth.getCurrentUser().userId),
-        user: auth.getCurrentUser()
+        images: filter(state.images, ownProps.params.filter || 'all', getCurrentUser().userId),
+        user: getCurrentUser()
     };
 }
 function mapDispatchToProps(dispatch){
     return {
-        removeImage: image=>dispatch(imageActions.RemoveImageAsync(image)),
-        likesInc: image=>dispatch(imageActions.LikeIncAsync(image)),
-        likesDec: image=>dispatch(imageActions.LikeDecAsync(image))
+        removeImage: image=>dispatch(RemoveImageAsync(image)),
+        likesInc: image=>dispatch(LikeIncAsync(image)),
+        likesDec: image=>dispatch(LikeDecAsync(image))
     };
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ImageList));
+

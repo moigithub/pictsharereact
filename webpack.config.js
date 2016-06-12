@@ -4,7 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDev = process.env['NODE_ENV']=="development";
 
-var entries, GLOBALS, plugins, loaders;
+var entries, GLOBALS, plugins, loaders, contentBase;
 
 if (isDev ){
   /////////////// DEVELOPMENT
@@ -12,7 +12,7 @@ if (isDev ){
     'process.env.NODE_ENV': JSON.stringify('development'),
     __DEV__: true
   };
-  
+  contentBase='./client';
   entries = [
     // Add the client which connects to our middleware
     // You can use full urls like 'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr'
@@ -56,11 +56,8 @@ if (isDev ){
     'process.env.NODE_ENV': JSON.stringify('production'),
     __DEV__: false
   };
-  
-  entries = [
-    //"./client/index.html"
-    "./client/main"      
-  ];
+  contentBase='./public';
+  entries = "./client/main";
   plugins= [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin(GLOBALS), // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
@@ -108,13 +105,13 @@ if (isDev ){
 
 
 module.exports = {
-  debug: true,
-  noInfo: false, // set to false to see a list of every file being bundled.
+  debug: isDev? true:false,
+  noInfo: isDev? false:true, // set to false to see a list of every file being bundled.
     // Gives you sourcemaps without slowing down rebundling
   devtool: isDev ? 'cheap-module-eval-source-map':'source-map',
   devServer: {
         contentBase: isDev? './client' : './public',
-//        progress: true,
+        progress: true,
         colors: true 
     },
   

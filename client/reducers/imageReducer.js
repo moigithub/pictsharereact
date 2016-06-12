@@ -1,3 +1,4 @@
+'use strict';
 import { ADD_IMAGE,
      REMOVE_IMAGE,
      UPDATE_IMAGE,
@@ -5,8 +6,6 @@ import { ADD_IMAGE,
      LIKE_DEC }
      from '../actions/actionConstants';
      
-import { AddImage, RemoveImage, LikeInc } from '../actions/imageActions';
-
 
 export default function imageReducer(state=[], action){
     //console.log("*********img reducer***********",action);
@@ -16,7 +15,7 @@ export default function imageReducer(state=[], action){
             return [...state, action.image];
         case REMOVE_IMAGE:
             //console.log("reducer img", action,"state" ,state);
-            return state.filter(image=>{ return image._id!==action.image._id});
+            return state.filter(image=>{ return image._id!==action.image._id; } );
         case UPDATE_IMAGE:
             return state.map(image=>{
                     if(image._id==action.image._id){
@@ -45,5 +44,5 @@ export default function imageReducer(state=[], action){
                 });
     }
     return state;
-};
+}
 

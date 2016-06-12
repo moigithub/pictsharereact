@@ -1,3 +1,4 @@
+'use strict';
 import React from 'react';
 
 export default class TheComponent extends React.Component {
@@ -13,4 +14,4 @@ export default class TheComponent extends React.Component {
             </div>
         );
     }
-};
+}

@@ -1,9 +1,10 @@
+'use strict';
 import React, {Component, PropTypes} from 'react';
 import NavBar from './NavBar';
 import ImageForm from './ImageForm';
 
-import {connect} from 'react-redux';
-import  * as auth from '../auth';
+//import {connect} from 'react-redux';
+import  * as auth from '../clientAuth';
 
 
 export default class Main extends Component {

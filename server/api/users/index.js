@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-import {isLoggedIn} from '../auth';
+var isLoggedIn = require('../auth').isLoggedIn;
 
 var router = express.Router();
 
