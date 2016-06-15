@@ -1,10 +1,10 @@
 import React from 'react';
 import chai from 'chai';
+var expect = chai.expect;
 import {mount, shallow} from 'enzyme';
 
 import {ImageList} from './ImageList';
 
-var expect = chai.expect;
 
 const imgs = [{_id:1, title:'mono', imageURL:'http://i2.asntown.net/ha/Animals/finger-monkey/finger_monkeys_640_04.jpg', likesCount:4, userId:"1"}];
 const props = {
@@ -13,6 +13,7 @@ const props = {
         likesDec:()=>{}, 
         user:{userId:'1'}, 
         images:imgs};
+        
 function setup1(){
     return shallow(<ImageList {...props} />);
 }

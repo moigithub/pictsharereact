@@ -5,7 +5,7 @@
       "presets": ["react-hmre"]
     }    ,
     "testing": {
-      "presets": []
+      "presets": ["react", "es2015"]
     }
   }
 }

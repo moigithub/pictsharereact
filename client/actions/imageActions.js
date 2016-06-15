@@ -8,6 +8,9 @@ import { ADD_IMAGE,
      from './actionConstants';
 
 import toastr from 'toastr';
+// import $ from 'jquery';
+var $ = require("jquery");
+
 
 export const AddImage=(image)=>{
     return {type: ADD_IMAGE, image:image};
@@ -65,7 +68,7 @@ export function AddImageAsync(image) {
         var API_URL ="/api/images";
 
         $.ajax({
-            url:`${API_URL}`,
+            url: API_URL,
             method:"POST",
             data: image,
         //    contentType: "application/json; charset=utf-8",

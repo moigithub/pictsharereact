@@ -12,8 +12,6 @@ import {getImagesFromServer} from './actions/imageActions';
 
 import * as auth from './clientAuth';
 
-// import $ from 'jquery';
-var $ = require("jquery");
 
 //require('es6-promise').polyfill();
 //import fetch from 'isomorphic-fetch'
